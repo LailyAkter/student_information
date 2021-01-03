@@ -91,10 +91,14 @@
                         <span>Department</span>
                     </a>
                 </li>
+
+                <li class="{{ Request::is('admin/info*') ? 'active' : '' }}">
+                    <a href="{{ url('admin/info') }}">
+                        <i class="material-icons">settings</i>
+                        <span>Student Info </span>
+                    </a>
+                </li>
                 
-
-
-
                 <li class='header'>System</li>
 
                 <li class="{{ Request::is('admin/profile*') ? 'active' : '' }}">
@@ -129,6 +133,13 @@
                     <a href="{{ url('student/dashboard') }}">
                         <i class="material-icons">dashboard</i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="{{ Request::is('student/information') ? 'active' : '' }}">
+                    <a href="{{ url('student/information') }}">
+                        <i class="material-icons">dashboard</i>
+                        <span>Student Information</span>
                     </a>
                 </li>
             

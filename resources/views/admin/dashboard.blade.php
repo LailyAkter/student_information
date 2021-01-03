@@ -14,24 +14,10 @@
                         <i class="material-icons">playlist_add_check</i>
                     </div>
                     <div class="content">
-                        <div class="text">TOTAL POSTS</div>
+                        <div class="text">TOTAL </div>
                         <div class="number count-to" data-from="0" data-to="" data-speed="15" data-fresh-interval="20"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <div class="info-box bg-purple hover-zoom-effect">
-                    <div class="icon">
-                        <i class="material-icons">apps</i>
-                    </div>
-                    <div class="content">
-                        <div class="text">TOTAL CATEGORIES</div>
-                        <div class="number count-to" data-from="0" data-to="" data-speed="15" data-fresh-interval="20"></div>
-                    </div>
-                </div>
-                
             </div>
         </div>
     </div>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Student;
 use Illuminate\Http\Request;
 use Response;
+use App\User;
 
 class StudentController extends Controller
 {
@@ -19,7 +19,7 @@ class StudentController extends Controller
         // $data['students'] = Student::orderBy('id','desc')->paginate(5);   
         //     return view('admin.students.list',$data);
 
-        $students = Student::all();
+        $students = User::all();
 
         return view('admin.students.list',compact('students'));
         
@@ -41,10 +41,10 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     { 
-        $student = new Student([
-            'first_name' => $request->post('txtFirstName'),
-            'last_name'=> $request->post('txtLastName'),
-            'address'=> $request->post('txtAddress')
+        $student = new User([
+            'name' => $request->post('txtFirstName'),
+            'email'=> $request->post('txtLastName'),
+            'password'=> $request->post('txtPassword')
         ]);
         $student->save();    
             return Response::json($student);
@@ -68,7 +68,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $where = array('id' => $id);
-        $student  = Student::where($where)->first();
+        $student  = User::where($where)->first();
  
         return Response::json($student);
     }
@@ -82,10 +82,9 @@ class StudentController extends Controller
     public function update(Request $request)
     {
         //
-        $student = Student::find($request->post('hdnStudentId'));
-                $student->first_name = $request->post('txtFirstName');
-                $student->last_name = $request->post('txtLastName');
-                $student->address = $request->post('txtAddress');
+        $student = User::find($request->post('hdnStudentId'));
+                $student->name = $request->post('txtFirstName');
+                $student->email = $request->post('txtLastName');
                 $student->update();
         return Response::json($student);
  
@@ -99,7 +98,7 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
-        $student = Student::where('id',$id)->delete();
+        $student = User::where('id',$id)->delete();
         return Response::json($student);
     }
 }

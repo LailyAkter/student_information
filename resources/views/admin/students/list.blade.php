@@ -20,24 +20,26 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Address</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
                 <th width="280px">Action</th>
             </tr>
         </thead> 
         <tbody>
             @foreach ($students as $student)
+                @if($student->role_id == 2 )
                 <tr id="{{ $student->id }}">
                     <td>{{ $student->id }}</td>
-                    <td>{{ $student->first_name }}</td>
-                    <td>{{ $student->last_name }}</td>
-                    <td>{{ $student->address }}</td>
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->password }}</td>
                     <td>
                         <a data-id="{{ $student->id }}" class="btn btn-primary btnEdit">Edit</a>
                         <a data-id="{{ $student->id }}" class="btn btn-danger btnDelete">Delete</button>
                     </td>
                 </tr>
+                @endif
             @endforeach
         </tbody>
     </table>
@@ -56,16 +58,16 @@
                 <form id="addStudent" name="addStudent" action="{{ route('student.store') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="txtFirstName">First Name:</label>
+                        <label for="txtFirstName">Name</label>
                         <input type="text" class="form-control" id="txtFirstName" placeholder="Enter First Name" name="txtFirstName">
                     </div>
                     <div class="form-group">
-                        <label for="txtLastName">Last Name:</label>
+                        <label for="txtLastName">Email</label>
                         <input type="text" class="form-control" id="txtLastName" placeholder="Enter Last Name" name="txtLastName">
                     </div>
                     <div class="form-group">
-                        <label for="txtAddress">Address:</label>
-                        <textarea class="form-control" id="txtAddress" name="txtAddress" rows="10" placeholder="Enter Address"></textarea>
+                        <label for="txtPassword">Password</label>
+                        <input type="text" class="form-control" id="txtPassword" placeholder="Enter Last Name" name="txtPassword">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -91,17 +93,14 @@
                     <input type="hidden" name="hdnStudentId" id="hdnStudentId"/>
                     @csrf
                     <div class="form-group">
-                        <label for="txtFirstName">First Name:</label>
+                        <label for="txtFirstName">Name</label>
                         <input type="text" class="form-control" id="txtFirstName" placeholder="Enter First Name" name="txtFirstName">
                     </div>
                     <div class="form-group">
-                        <label for="txtLastName">Last Name:</label>
+                        <label for="txtLastName">Email</label>
                         <input type="text" class="form-control" id="txtLastName" placeholder="Enter Last Name" name="txtLastName">
                     </div>
-                    <div class="form-group">
-                        <label for="txtAddress">Address:</label>
-                        <textarea class="form-control" id="txtAddress" name="txtAddress" rows="10" placeholder="Enter Address"></textarea>
-                    </div>
+                   
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -119,7 +118,7 @@
         rules: {
             txtFirstName: "required",
             txtLastName: "required",
-            txtAddress: "required"
+            txtPassword: "required"
         },
         messages: {
         },
@@ -134,9 +133,9 @@
             success: function (data) {
             var student = '<tr id="'+data.id+'">';
             student += '<td>' + data.id + '</td>';
-            student += '<td>' + data.first_name + '</td>';
-            student += '<td>' + data.last_name + '</td>';
-            student += '<td>' + data.address + '</td>';
+            student += '<td>' + data.name + '</td>';
+            student += '<td>' + data.email + '</td>';
+            student += '<td>' + data.password + '</td>';
             student += '<td><a data-id="' + data.id + '" class="btn btn-primary btnEdit">Edit</a>&nbsp;&nbsp;<a data-id="' + data.id + '" class="btn btn-danger btnDelete">Delete</a></td>';
             student += '</tr>';            
             $('#studentTable tbody').prepend(student);
@@ -156,9 +155,8 @@
       $.get('student/' + student_id +'/edit', function (data) {
           $('#updateModal').modal('show');
           $('#updateStudent #hdnStudentId').val(data.id); 
-          $('#updateStudent #txtFirstName').val(data.first_name);
-          $('#updateStudent #txtLastName').val(data.last_name);
-          $('#updateStudent #txtAddress').val(data.address);
+          $('#updateStudent #txtFirstName').val(data.name);
+          $('#updateStudent #txtLastName').val(data.email);
       })
    });
     // Update the student
@@ -166,8 +164,6 @@
     rules: {
         txtFirstName: "required",
         txtLastName: "required",
-        txtAddress: "required"
-    
     },
     messages: {
     },
@@ -181,9 +177,8 @@
             dataType: 'json',
             success: function (data) {
             var student = '<td>' + data.id + '</td>';
-            student += '<td>' + data.first_name + '</td>';
-            student += '<td>' + data.last_name + '</td>';
-            student += '<td>' + data.address + '</td>';
+            student += '<td>' + data.name + '</td>';
+            student += '<td>' + data.email + '</td>';
             student += '<td><a data-id="' + data.id + '" class="btn btn-primary btnEdit">Edit</a>&nbsp;&nbsp;<a data-id="' + data.id + '" class="btn btn-danger btnDelete">Delete</a></td>';
             $('#studentTable tbody #'+ data.id).html(student);
             $('#updateStudent')[0].reset();

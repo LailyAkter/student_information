@@ -29,6 +29,14 @@ class LoginController extends Controller
      */
     protected $redirectTo;
 
+    protected function redirectTo()
+    {
+        if (Auth::check() && Auth::user()->role_id == 1) {
+            return "admin/dashboard";
+        }
+        return 'student/dashboard';
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -36,11 +44,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        if(Auth::check() && Auth::user()->role_id == 1){
-            $this->redirectTo ='admin/dashboard';
-        }else{
-            $this->redirectTo = 'student/dashboard';
-        }
+
         $this->middleware('guest')->except('logout');
     }
 }

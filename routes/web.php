@@ -34,15 +34,19 @@ Route::middleware('auth', 'admin')->namespace('Admin')->prefix('admin')->group(f
     Route::post('student/update', 'StudentController@update')->name('student.update');
     Route::get('student/{id}/delete', 'StudentController@destroy')->name('student.delete');
 
-  
-
-
     Route::get('course','CourseController@index');
     Route::post('course','CourseController@store')->name('course.store');
     Route::get('course/{id}/edit', 'CourseController@edit')->name('course.edit');
     Route::post('course/update', 'CourseController@update')->name('course.update');
     Route::get('course/{id}/delete', 'CourseController@destroy')->name('course.delete');
 
+    // Route::get('info','InformationController@index');
+    // Route::post('info','InformationController@store')->name('info.store');
+    // Route::get('info/{id}/edit', 'InformationController@edit')->name('info.edit');
+    // Route::post('info/update', 'InformationController@update')->name('info.update');
+    // Route::get('info/{id}/delete', 'InformationController@destroy')->name('info.delete');
+
+    Route::resource('info','InformationController');
 
     Route::get('profile','SettingController@index');
     Route::post('profile/update','SettingController@update');
@@ -53,11 +57,10 @@ Route::middleware('auth', 'admin')->namespace('Admin')->prefix('admin')->group(f
 });
 
 
-
-
-
 Route::middleware('auth', 'student')->namespace('Student')->prefix('student')->group(function () {
     Route::get('dashboard','DashboardController@index');
+
+    Route::get('information','InformationController@index');
 
 
     Route::get('profile','SettingController@index');

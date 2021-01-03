@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/admin/dashboard') }}">dashboard</a>
+                        <a href="{{ url('/admin/dashboard') }}">Admin Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
@@ -77,7 +77,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Student Management System
+                    Student Management
                 </div>
             </div>
         </div>

@@ -111,17 +111,17 @@
             type: "POST",
             dataType: 'json',
             success: function (data) {
-            var department = '<tr id="'+data.id+'">';
-            department += '<td>' + data.id + '</td>';
-            department += '<td>' + data.department_name + '</td>';
-            department += '<td><a data-id="' + data.id + '" class="btn btn-primary btnEdit">Edit</a>&nbsp;&nbsp;<a data-id="' + data.id + '" class="btn btn-danger btnDelete">Delete</a></td>';
-            department += '</tr>';            
-            $('#departmentTable tbody').prepend(department);
-            $('#addDepartment')[0].reset();
-            $('#addModal').modal('hide');
-            },
-            error: function (data) {
-            }
+                var department = '<tr id="'+data.id+'">';
+                department += '<td>' + data.id + '</td>';
+                department += '<td>' + data.department_name + '</td>';
+                department += '<td><a data-id="' + data.id + '" class="btn btn-primary btnEdit">Edit</a>&nbsp;&nbsp;<a data-id="' + data.id + '" class="btn btn-danger btnDelete">Delete</a></td>';
+                department += '</tr>';            
+                $('#departmentTable tbody').prepend(department);
+                $('#addDepartment')[0].reset();
+                $('#addModal').modal('hide');
+                },
+                error: function (data) {
+                }
         });
     }
 });
@@ -153,15 +153,15 @@
         type: "POST",
         dataType: 'json',
         success: function (data) {
-        var department = '<td>' + data.id + '</td>';
-        department += '<td>' + data.department_name + '</td>';
-        department += '<td><a data-id="' + data.id + '" class="btn btn-primary btnEdit">Edit</a>&nbsp;&nbsp;<a data-id="' + data.id + '" class="btn btn-danger btnDelete">Delete</a></td>';
-        $('#departmentTable tbody #'+ data.id).html(department);
-        $('#updateDepartment')[0].reset();
-        $('#updateModal').modal('hide');
-        },
-        error: function (data) {
-        }
+            var department = '<td>' + data.id + '</td>';
+            department += '<td>' + data.department_name + '</td>';
+            department += '<td><a data-id="' + data.id + '" class="btn btn-primary btnEdit">Edit</a>&nbsp;&nbsp;<a data-id="' + data.id + '" class="btn btn-danger btnDelete">Delete</a></td>';
+            $('#departmentTable tbody #'+ data.id).html(department);
+            $('#updateDepartment')[0].reset();
+            $('#updateModal').modal('hide');
+            },
+            error: function (data) {
+            }
     });
  }
  }); 

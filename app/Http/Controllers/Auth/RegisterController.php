@@ -40,7 +40,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         if(Auth::check() && Auth::user()->role_id == 1){
-            $this->redirectTo ='admin/dashboard';
+            $this->redirectTo = 'admin/dashboard';
         }else{
             $this->redirectTo = 'student/dashboard';
         }
